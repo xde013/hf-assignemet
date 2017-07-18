@@ -1,4 +1,4 @@
-# front-test
+# frontend
 
 > A Vue.js project for Hidden Founders
 
