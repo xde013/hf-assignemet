@@ -7,5 +7,6 @@
 
 module.exports = {
  	// Using SailsJS defaults Blueprint Actions for now
+ 	
 };
 

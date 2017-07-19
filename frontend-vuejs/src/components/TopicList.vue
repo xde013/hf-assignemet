@@ -1,17 +1,20 @@
 <template>
 	<div>
-		<topic v-for="(topic, key) in topics":topic="topic" key="topic.id"></topic>
+		<topic v-for="(topic, key) in topics" :topic="topic" key="topic.id"></topic>
 	</div>
 </template>
 
 <script>
 	import Topic from './Topic.vue';
+	import TopicDetail from './TopicDetail.vue';
+
 
 	export default {
 
 		name: 'topic-list',
 		components: {
-			Topic
+			Topic,
+			TopicDetail
 		},
 
 		data() {

@@ -6,13 +6,15 @@
 
 <script>
 import TopicList from './components/TopicList.vue';
+import Comment from './components/Comment.vue';
 
 export default {
   
   name: 'app',
    
    components: {
-    TopicList
+    TopicList,
+    Comment
   }
 }
 </script>

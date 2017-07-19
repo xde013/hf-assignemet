@@ -13,10 +13,13 @@
 				</p>
 			</div>
 		</div>
-		<div class="row center-align">
-			<div class="col s12">
+		<div class="row ">
+			<div class="col s12 right-align grey-text">
 				<!-- VueJS FILTERS #BringBackFilters -->
-			<a :href="'#/topic/' + topic.id" class="waves-effect btn-flat full-width"> {{ numComs }} {{ numComs | pluralize('comment') }} </a>
+					<router-link class="waves-effect btn-flat lowercase" :to="'/topic/' + topic.id">{{ numComs }} {{ numComs | pluralize('comment') }}</router-link>
+					<span class="waves-effect btn-flat lowercase" > by {{ author }}</span>
+					<span class="waves-effect btn-flat lowercase "> submited {{ topic.createdAt | moment("from") }}</span>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -29,11 +32,11 @@
 		props: ['topic'],
 		data() {
 			return {
-				upvoted: false
+				upvoted: false,
 			};
 		},
 		methods: {
-			// toggle vote 
+			// toggle vote
 			vote: function () {
 				var self = this;
 				var new_score = self.upvoted ? self.score - 1 : self.score + 1; // intermediate score value
@@ -42,7 +45,7 @@
 			.then(response => {
 				self.upvoted = !self.upvoted;
 				}, response => {
-				console.log("ERROR UPDATE");
+					console.log("ERROR UPDATE");
 				});
 			}
 		},
@@ -52,15 +55,21 @@
 				return this.upvoted ? this.topic.score + 1 : this.topic.score;
 			},
 			numComs: function() {
-				return this.topic.comments.length > 0 ? this.topic.comments.length : "No";
-			}
+				if (this.topic.comments) {
+					return (this.topic.comments.length > 0) ? this.topic.comments.length : "No";
+				} else {
+					return null;
+				}
+			},
+			author: function () {
+				return this.topic.by.name;
+			}			
 		}
 	}
 </script>
-
 <style type="text/css" media="screen">
-	.full-width {
-		width: 100%;
+	.lowercase {
 		text-transform: lowercase;
+		color: #78909c;
 	}
 </style>

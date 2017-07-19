@@ -3,14 +3,18 @@ import App from './App.vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import Vue2Filters from 'vue2-filters'
+import VueMoment from 'vue-moment'
 
 // Vue Components for routes config
 import TopicList from './components/TopicList.vue';
+import TopicDetail from './components/TopicDetail.vue';
+
 
 // Call some nifty plugins
 Vue.use(VueResource);
 Vue.use(VueRouter);
 Vue.use(Vue2Filters);
+Vue.use(VueMoment);
 
  // let app = new Vue({
  //   el: '#app',
@@ -18,7 +22,8 @@ Vue.use(Vue2Filters);
  // })
 
 const routes = [
- 	{path: '/', component: TopicList}
+ 	{path: '/', component: TopicList},
+ 	{path: '/topic/:id', name: 'detail', component: TopicDetail}
  	// Many routes to come soon 
  	// {path: '/topic/:id', TopicDetail},
  	// {path: '/me', UserDetail},
