@@ -8,7 +8,7 @@ import VueMoment from 'vue-moment'
 // Vue Components for routes config
 import TopicList from './components/TopicList.vue';
 import TopicDetail from './components/TopicDetail.vue';
-
+import TopicForm from './components/TopicForm.vue';
 
 // Call some nifty plugins
 Vue.use(VueResource);
@@ -16,6 +16,8 @@ Vue.use(VueRouter);
 Vue.use(Vue2Filters);
 Vue.use(VueMoment);
 
+// Send resquests as application/x-www-form-urlencoded because JSON is awesome
+Vue.http.options.emulateJSON = true;
  // let app = new Vue({
  //   el: '#app',
  //   render: h => h(App)
@@ -23,7 +25,8 @@ Vue.use(VueMoment);
 
 const routes = [
  	{path: '/', component: TopicList},
- 	{path: '/topic/:id', name: 'detail', component: TopicDetail}
+ 	{path: '/topic/:id', name: 'detail', component: TopicDetail},
+ 	{path: '/submit', name: 'submit', component: TopicForm}
  	// Many routes to come soon 
  	// {path: '/topic/:id', TopicDetail},
  	// {path: '/me', UserDetail},
