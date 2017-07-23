@@ -64,16 +64,20 @@
 			},
 
 			updateComments: function (comment) {
+				this.fetchTopic();
 		        this.comments.push(comment);
 		     } 
 		},
+
 		created() {
 			this.loading = true;
 			this.fetchTopic()
 		},
+
 		watch: {
 			'$route': 'fetchTopic'
 		},
+
 		computed: {
 			numComs: function() {
 				return this.comments.length > 0 ? this.comments.length : "No";
