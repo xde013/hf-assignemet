@@ -29,13 +29,13 @@
 		data() {
 			return {
 				topics: [],
-				loading: Boolean
+				loading: true
 			};
 		},
 		methods: {
 			// GET /news
 			fetchTopics: function() {
-				
+				// Using Vue-Resource plugin
 				this.$http.get('http://localhost:1337/News').then(response => {
 					this.topics = response.body;	
 					this.loading = false;				

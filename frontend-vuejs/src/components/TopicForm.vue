@@ -39,14 +39,16 @@
 				this.loading = true;
 				console.log(this.content);
 				 let topic = {
-								content: this.content,
-						 		by: 1 // TODO assign current user id
+								content: this.content, 
+								score: 1, // Initial self upvote
+						 		by: 4 // TODO assign current user id
 				 }
 				  // POST someItem/1
-			 this.$resource('http://localhost:1337/news/').save(topic).then(response => {
+			   this.$resource('http://localhost:1337/news/').save(topic).then(response => {
 			   console.log('SAVED');
 			   this.loading = false;
 			   this.content = '';
+			   this.$dialog("Topic submited succesfully!");
 			 }, response => {
 			   // error callback
 			 });

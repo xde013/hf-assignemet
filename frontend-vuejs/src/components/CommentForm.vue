@@ -8,7 +8,7 @@
 				<h5 class="grey-text center-align">Share your opinion</h5>
 					<div class="input-field col s12 white ">
 						<i class="material-icons prefix">mode_edit</i>
-						<textarea id="topic" class="materialize-textarea" v-model="content" data-length="120" required></textarea>
+						<textarea :disabled="loading" id="topic" class="materialize-textarea" v-model="content" data-length="120" required></textarea>
 						<label for="topic" data-error="wrong" data-success="right" > Your comment </label>
 					</div>
 					<div class="col s12 right-align">
@@ -36,21 +36,21 @@
 				content: ''
 			}
 		},
-
 		methods: {
 			submitComment: function() {
+				this.loading = true; // disable UI components
+
 				let comment = {
 					content: this.content,
-					by: 1 // TODO assign current user id
+					by: 4 // TODO assign current user id
 				}
 				// POST request to comments
-				this.loading = true;
-				
 				this.$resource('http://localhost:1337/news/'+this.topic.id+'/comments').save(comment).then(response => {
 					console.log(response.data);
 					this.$emit('commented', response.data); // trigger the update method in the parent
+					this.$dialog("Comment posted!");
 					this.content = '';
-					this.loading = false;
+					this.loading = false; // enable UI
 				}, response => {
 					// error callback
 				})

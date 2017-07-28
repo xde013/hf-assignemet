@@ -4,17 +4,19 @@ import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import Vue2Filters from 'vue2-filters'
 import VueMoment from 'vue-moment'
-
+import Materials from 'vue-materials'
 // Vue Components for routes config
-import TopicList from './components/TopicList.vue';
-import TopicDetail from './components/TopicDetail.vue';
-import TopicForm from './components/TopicForm.vue';
+import TopicList from './components/TopicList.vue'
+import TopicDetail from './components/TopicDetail.vue'
+import TopicForm from './components/TopicForm.vue'
+import Profile from './components/Profile.vue'
 
 // Call some nifty plugins
-Vue.use(VueResource);
-Vue.use(VueRouter);
-Vue.use(Vue2Filters);
-Vue.use(VueMoment);
+Vue.use(VueResource)
+Vue.use(VueRouter)
+Vue.use(Vue2Filters)
+Vue.use(VueMoment)
+Vue.use(Materials)
 
 // Send resquests as application/x-www-form-urlencoded because JSON is awesome
 Vue.http.options.emulateJSON = true;
@@ -26,7 +28,8 @@ Vue.http.options.emulateJSON = true;
 const routes = [
  	{path: '/', component: TopicList},
  	{path: '/topic/:id', name: 'detail', component: TopicDetail},
- 	{path: '/submit', name: 'submit', component: TopicForm}
+ 	{path: '/submit', name: 'submit', component: TopicForm},
+ 	{path: '/users/:id', name: 'profile', component: Profile}
  	// Many routes to come soon 
  	// {path: '/topic/:id', TopicDetail},
  	// {path: '/me', UserDetail},

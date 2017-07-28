@@ -1,13 +1,23 @@
 <template>
-<div >
-	<a  class="collection-item white black-text" >
+<div>
+<!-- 	<a class="collection-item white black-text" >
 		<b left-align> {{ author }} </b>
 		<p>
 			{{ commentDetails.content }}
 			<br>
-			<span class="right grey-text">posted {{ commentDetails.createdAt | moment("from") }}</span>
+			<span class="right grey-text"></span>
 		</p> 	
-	</a>
+	</a> -->
+	<li class="collection-item avatar">
+      <img :src="avatar" alt="" class="circle">
+      <span class="title"> <b>{{ author }} </b> </span>
+      <p>
+         {{ commentDetails.content }}
+      </p>
+      <a class="secondary-content">posted {{ commentDetails.createdAt | moment("from") }}</a>
+    </li>
+      <div class="divider"></div>
+
 </div>
 </template>
 <script>
@@ -32,6 +42,11 @@
 		},
 		created() {
 			this.fetchComment();
+		},
+		computed: {
+			avatar: function () {
+				return "https://api.adorable.io/avatars/150/"+ this.author +".png"
+			}
 		}
 	}
 </script>

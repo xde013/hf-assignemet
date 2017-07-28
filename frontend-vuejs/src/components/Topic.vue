@@ -17,8 +17,8 @@
 			<div class="col s12 right-align grey-text">
 				<!-- VueJS FILTERS #BringBackFilters -->
 					<router-link class="waves-effect btn-flat lowercase" :to="'/topic/' + topic.id">{{ numComs }} {{ numComs | pluralize('comment') }}</router-link>
-					<span class="waves-effect btn-flat lowercase" > by {{ author }}</span>
-					<span class="waves-effect btn-flat lowercase "> submited {{ topic.createdAt | moment("from") }}</span>
+					<router-link class="waves-effect btn-flat lowercase" :to="'/users/' + topic.by.id"> by {{topic.by.name}} </router-link>
+					<span class="waves-effect btn-flat lowercase teal-text"> submited {{ topic.createdAt | moment("from") }}</span>
 				</div>
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 			vote: function () {
 				var self = this;
 				var new_score = self.upvoted ? self.score - 1 : self.score + 1; // intermediate score value
-				// POST /news/:id/{paylod}
+				// POST /news/:id/{payload}
 			this.$resource('http://localhost:1337/News{/id}').update({id: self.topic.id}, {score: new_score})
 			.then(response => {
 				self.upvoted = !self.upvoted;
@@ -60,9 +60,6 @@
 				} else {
 					return null;
 				}
-			},
-			author: function () {
-				return this.topic.by.name;
 			}			
 		}
 	}
